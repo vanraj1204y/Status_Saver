@@ -1,6 +1,6 @@
 /// All user-visible copy lives here so it can be localized later.
 abstract final class AppStrings {
-  static const appName = 'Status Saver';
+  static const appName = 'StatusNest';
   static const appVersion = '1.0.0';
 
   // Navigation
@@ -30,12 +30,14 @@ abstract final class AppStrings {
       'Statuses you download will appear here, and stay even after they disappear from WhatsApp.';
   static const openStatuses = 'Go to Statuses';
   static const errorTitle = 'Something went wrong';
+  static const errorBody =
+      'We ran into a problem loading this. Please try again.';
   static const tryAgain = 'Try again';
 
   // Permissions
   static const permissionTitle = 'Allow access to statuses';
   static const permissionBody =
-      'Status Saver needs permission to read the status media that WhatsApp keeps on this device. Nothing is uploaded anywhere.';
+      '$appName needs permission to read the status media that WhatsApp keeps on this device. Nothing is uploaded anywhere.';
   static const permissionButton = 'Allow access';
   static const permissionDeniedTitle = 'Permission needed';
   static const permissionDeniedBody =
@@ -81,14 +83,14 @@ abstract final class AppStrings {
   static const howToStep2Title = 'View a status';
   static const howToStep2Body =
       'Watch the photo or video statuses you want to keep.';
-  static const howToStep3Title = 'Return to Status Saver';
+  static const howToStep3Title = 'Return to $appName';
   static const howToStep3Body =
       'Come back here and pull to refresh — the statuses you viewed will appear.';
   static const howToStep4Title = 'Download or share';
   static const howToStep4Body =
       'Tap a status to preview it, then download it or share it with one tap.';
   static const howToNote =
-      'Status Saver can only display statuses that have already been viewed and are still available on your device. It is not affiliated with WhatsApp.';
+      '$appName can only display statuses that have already been viewed and are still available on your device. It is not affiliated with WhatsApp.';
 
   // Settings
   static const settingsGeneral = 'General';
@@ -120,9 +122,9 @@ abstract final class AppStrings {
   static const appVersionLabel = 'App version';
 
   static const privacyText =
-      'Status Saver runs entirely on your device. It reads status media that WhatsApp already stores on your phone, and saves copies only to your own gallery. No data is collected, tracked, or uploaded anywhere.';
+      '$appName runs entirely on your device. It reads status media that WhatsApp already stores on your phone, and saves copies only to your own gallery. No data is collected, tracked, or uploaded anywhere.';
   static const termsText =
-      'Status Saver is provided as-is, for personal use. Please respect the privacy of others: always ask before saving or re-sharing someone else\'s status. This app is not affiliated with, endorsed by, or connected to WhatsApp LLC.';
+      '$appName is provided as-is, for personal use. Please respect the privacy of others: always ask before saving or re-sharing someone else\'s status. This app is not affiliated with, endorsed by, or connected to WhatsApp LLC.';
   static const aboutText =
-      'Status Saver lets you keep and share the WhatsApp status photos and videos that are already on your device — with a fast gallery, a built-in video player, and one-tap sharing.';
+      '$appName lets you keep and share the WhatsApp status photos and videos that are already on your device — with a fast gallery, a built-in video player, and one-tap sharing.';
 }

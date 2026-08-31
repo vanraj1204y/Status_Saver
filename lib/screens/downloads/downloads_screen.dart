@@ -90,7 +90,7 @@ class _DownloadsScreenState extends State<DownloadsScreen> {
         return EmptyState(
           icon: Icons.error_outline_rounded,
           title: AppStrings.errorTitle,
-          body: AppStrings.emptyDownloadsBody,
+          body: AppStrings.errorBody,
           actionLabel: AppStrings.tryAgain,
           onAction: () => vm.refresh(),
         );

@@ -3,7 +3,9 @@ import 'package:provider/provider.dart';
 
 import '../../app/strings.dart';
 import '../../app/theme/app_colors.dart';
+import '../../core/config/legal_config.dart';
 import '../../viewmodels/settings_view_model.dart';
+import '../legal/legal_document_screen.dart';
 
 /// App settings: general, appearance, media behavior and about.
 class SettingsScreen extends StatelessWidget {
@@ -93,15 +95,15 @@ class SettingsScreen extends StatelessWidget {
               leading: const Icon(Icons.privacy_tip_outlined),
               title: const Text(AppStrings.privacy),
               trailing: const Icon(Icons.chevron_right_rounded),
-              onTap: () => _showInfo(
-                  context, AppStrings.privacy, AppStrings.privacyText),
+              onTap: () => _openLegalDocument(
+                  context, AppStrings.privacy, kPrivacyPolicyAsset),
             ),
             ListTile(
               leading: const Icon(Icons.description_outlined),
               title: const Text(AppStrings.terms),
               trailing: const Icon(Icons.chevron_right_rounded),
               onTap: () =>
-                  _showInfo(context, AppStrings.terms, AppStrings.termsText),
+                  _openLegalDocument(context, AppStrings.terms, kTermsOfUseAsset),
             ),
             ListTile(
               leading: const Icon(Icons.info_outline_rounded),
@@ -169,6 +171,12 @@ class SettingsScreen extends StatelessWidget {
         ),
       ),
     );
+  }
+
+  void _openLegalDocument(BuildContext context, String title, String assetPath) {
+    Navigator.of(context).push(MaterialPageRoute<void>(
+      builder: (_) => LegalDocumentScreen(title: title, assetPath: assetPath),
+    ));
   }
 
   void _showInfo(BuildContext context, String title, String body) {

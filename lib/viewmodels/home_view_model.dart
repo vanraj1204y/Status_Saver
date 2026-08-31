@@ -35,7 +35,6 @@ class HomeViewModel extends ChangeNotifier {
 
   HomeStatus status = HomeStatus.loading;
   List<StatusMedia> items = const [];
-  String? errorDetail;
   NativeEnvironment? environment;
   bool _initialized = false;
   final Set<String> _savingIds = {};
@@ -95,7 +94,6 @@ class HomeViewModel extends ChangeNotifier {
     } catch (e) {
       debugPrint('Status scan failed: $e');
       status = HomeStatus.error;
-      errorDetail = null;
       notifyListeners();
     }
   }

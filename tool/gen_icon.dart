@@ -1,4 +1,4 @@
-// Generates the Status Saver launcher icon, adaptive icon layers and the
+// Generates the StatusNest launcher icon, adaptive icon layers and the
 // splash logo. Original branding: a story-style segmented ring with a
 // download arrow — WhatsApp-inspired teal, but no WhatsApp logo.
 //
@@ -49,7 +49,7 @@ void main() {
   stdout.writeln('Branding assets written to assets/branding/');
 }
 
-/// Draws the Status Saver mark: a 3-segment story ring with a download
+/// Draws the StatusNest mark: a 3-segment story ring with a download
 /// arrow dropping onto a tray bar.
 void drawLogo(img.Image canvas,
     {required img.Color color, required int cx, required int cy, required double scale}) {

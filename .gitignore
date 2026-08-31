@@ -43,3 +43,13 @@ app.*.map.json
 /android/app/debug
 /android/app/profile
 /android/app/release
+
+# Real build config (name/version/applicationId + update-worker URL). No
+# secrets live in it, but it's still per-checkout/per-rebrand config, not
+# source — keep .env.example as the committed template instead.
+/.env
+
+# Release signing secrets — never commit these.
+/android/key.properties
+*.jks
+*.keystore

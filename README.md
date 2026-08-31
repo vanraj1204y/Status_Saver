@@ -1,4 +1,4 @@
-# Status Saver
+# StatusNest
 
 A polished Flutter Android app to **save and share WhatsApp status photos and videos** that are already on your device. Built with a WhatsApp-inspired teal design language (Poppins + Roboto, rounded cards, light & dark themes) — but an original product, **not affiliated with WhatsApp**.
 
@@ -118,4 +118,4 @@ dart run flutter_native_splash:create
 
 ## Privacy & legal
 
-Status Saver runs entirely on-device: no analytics, no network calls, no data collection. It can only show media WhatsApp has already stored on the phone. Please respect others' privacy before saving or re-sharing their statuses. This project is not affiliated with, endorsed by, or connected to WhatsApp LLC; "WhatsApp" is a trademark of its respective owner. Poppins font is bundled under the SIL Open Font License.
+StatusNest runs entirely on-device: no analytics, no network calls, no data collection. It can only show media WhatsApp has already stored on the phone. Please respect others' privacy before saving or re-sharing their statuses. This project is not affiliated with, endorsed by, or connected to WhatsApp LLC; "WhatsApp" is a trademark of its respective owner. Poppins font is bundled under the SIL Open Font License.

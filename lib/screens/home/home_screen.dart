@@ -93,7 +93,7 @@ class _HomeScreenState extends State<HomeScreen> {
         return EmptyState(
           icon: Icons.error_outline_rounded,
           title: AppStrings.errorTitle,
-          body: AppStrings.emptyStatusesBody,
+          body: AppStrings.errorBody,
           actionLabel: AppStrings.tryAgain,
           onAction: () => vm.refresh(),
         );
