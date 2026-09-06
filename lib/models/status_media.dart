@@ -15,6 +15,8 @@ class StatusMedia {
     this.savedUri,
     this.thumbPath,
     this.duration,
+    this.thumbWidth,
+    this.thumbHeight,
   });
 
   final String id;
@@ -41,6 +43,20 @@ class StatusMedia {
 
   /// Video duration, when known.
   Duration? duration;
+
+  /// Real, rotation-corrected media dimensions from the decoded thumbnail
+  /// frame — more reliable than `video_player`'s reported size for some
+  /// files, where it can come back as zero. Filled lazily.
+  int? thumbWidth;
+  int? thumbHeight;
+
+  /// Rotation-corrected aspect ratio derived from the thumbnail, when known.
+  double? get thumbAspectRatio {
+    final w = thumbWidth;
+    final h = thumbHeight;
+    if (w == null || h == null || w <= 0 || h <= 0) return null;
+    return w / h;
+  }
 
   bool get isVideo => type == MediaType.video;
 

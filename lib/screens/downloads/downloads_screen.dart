@@ -108,7 +108,7 @@ class _DownloadsScreenState extends State<DownloadsScreen> {
               maxCrossAxisExtent: 240,
               mainAxisSpacing: 12,
               crossAxisSpacing: 12,
-              childAspectRatio: 0.72,
+              childAspectRatio: 0.58,
             ),
             itemCount: items.length,
             itemBuilder: (context, index) {

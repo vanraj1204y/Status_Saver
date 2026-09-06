@@ -27,7 +27,7 @@ val envProps = Properties().apply {
 val envAppName: String = envProps.getProperty("APP_NAME", "StatusNest")
 val envVersionName: String = envProps.getProperty("APP_VERSION_NAME", "1.0.0")
 val envVersionCode: Int = envProps.getProperty("APP_VERSION_CODE", "1").toInt()
-val envApplicationId: String = envProps.getProperty("APP_PACKAGE_NAME", "com.twocompo.statusnest")
+val envApplicationId: String = envProps.getProperty("APP_PACKAGE_NAME", "com.statusnest.app")
 
 // Release signing is read from android/key.properties, which is gitignored.
 // Debug builds fall back to the standard debug keystore.

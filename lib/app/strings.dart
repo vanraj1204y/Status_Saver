@@ -54,6 +54,7 @@ abstract final class AppStrings {
   static const alreadySaved = 'Already saved';
   static const share = 'Share';
   static const sendToWhatsApp = 'WhatsApp';
+  static const addToWhatsAppStatus = 'Add to WhatsApp Status';
   static const save = 'Save';
   static const delete = 'Delete';
   static const open = 'Open';

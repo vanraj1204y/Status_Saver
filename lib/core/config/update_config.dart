@@ -6,7 +6,7 @@ import 'app_config.dart';
 class UpdateConfig {
   UpdateConfig._();
 
-  static const String updateCheckUrl = '${AppConfig.updateApiBaseUrl}/${AppConfig.appSlug}/version.json';
+  static const String updateCheckUrl = '${AppConfig.updateApiBaseUrl}/version.json';
 
   static const bool forceUpdateEnabled = AppConfig.forceUpdateEnabled;
 

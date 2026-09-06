@@ -92,8 +92,17 @@ class _PreviewScreenState extends State<PreviewScreen>
     }
     setState(() => _videoLoading = true);
     final media = _current;
+    final statusRepo = context.read<StatusRepository>();
+    // Fire-and-forget: fills in media.thumbWidth/thumbHeight, a more
+    // reliable aspect-ratio source than video_player's reported size (which
+    // can come back as zero for some files) — see _videoBody.
+    if (media.thumbAspectRatio == null) {
+      unawaited(statusRepo.thumbnailFor(media).then((_) {
+        if (mounted && media == _current) setState(() {});
+      }));
+    }
     try {
-      final path = await context.read<StatusRepository>().playableFile(media);
+      final path = await statusRepo.playableFile(media);
       // The user may have swiped on while the file was being resolved.
       if (!mounted || media != _current) return;
       final controller = VideoPlayerController.file(File(path));
@@ -188,7 +197,7 @@ class _PreviewScreenState extends State<PreviewScreen>
     }
   }
 
-  Future<void> _share({bool whatsapp = false}) async {
+  Future<void> _share({bool whatsapp = false, bool whatsappStatus = false}) async {
     final shareService = context.read<ShareService>();
     final statusRepo = context.read<StatusRepository>();
     final media = _current;
@@ -198,9 +207,11 @@ class _PreviewScreenState extends State<PreviewScreen>
           media.path ?? (media.uri!.startsWith('content://') && !widget.fromDownloads
               ? await statusRepo.playableFile(media)
               : null);
-      final outcome = whatsapp
-          ? await shareService.sendToWhatsApp(media, resolvedPath: resolved)
-          : await shareService.share(media, resolvedPath: resolved);
+      final outcome = whatsappStatus
+          ? await shareService.sendToWhatsAppStatus(media, resolvedPath: resolved)
+          : whatsapp
+              ? await shareService.sendToWhatsApp(media, resolvedPath: resolved)
+              : await shareService.share(media, resolvedPath: resolved);
       if (!mounted) return;
       if (outcome == ShareOutcome.whatsappMissingFellBack) {
         AppToast.show(context, AppStrings.whatsappMissing,
@@ -384,6 +395,10 @@ class _PreviewScreenState extends State<PreviewScreen>
                 const FaIcon(FontAwesomeIcons.whatsapp,
                     color: Color(0xFF25D366)),
                 AppStrings.sendToWhatsApp),
+            _sheetItem(context, 'whatsapp_status',
+                const FaIcon(FontAwesomeIcons.whatsapp,
+                    color: Color(0xFF25D366)),
+                AppStrings.addToWhatsAppStatus),
             if (widget.fromDownloads)
               _sheetItem(context, 'delete',
                   const Icon(Icons.delete_outline_rounded,
@@ -401,6 +416,8 @@ class _PreviewScreenState extends State<PreviewScreen>
         _share();
       case 'whatsapp':
         _share(whatsapp: true);
+      case 'whatsapp_status':
+        _share(whatsappStatus: true);
       case 'delete':
         _delete();
     }
@@ -618,11 +635,18 @@ class _MediaPage extends StatelessWidget {
       return const Center(
           child: CircularProgressIndicator(color: AppColors.primary));
     }
+    // video_player's reported size can come back as zero for some files
+    // (its aspectRatio getter then silently falls back to a square 1.0),
+    // so prefer the rotation-corrected dimensions captured from the
+    // decoded thumbnail frame, which have proven reliable.
+    final playerSize = controller.value.size;
+    final aspectRatio = media.thumbAspectRatio ??
+        (playerSize.width > 0 && playerSize.height > 0
+            ? playerSize.width / playerSize.height
+            : 9 / 16);
     return Center(
       child: AspectRatio(
-        aspectRatio: controller.value.aspectRatio == 0
-            ? 9 / 16
-            : controller.value.aspectRatio,
+        aspectRatio: aspectRatio,
         child: VideoPlayer(controller),
       ),
     );

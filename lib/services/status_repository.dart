@@ -25,7 +25,9 @@ class StatusRepository {
       if (cached != null) {
         status
           ..thumbPath = cached.path
-          ..duration = cached.duration ?? status.duration;
+          ..duration = cached.duration ?? status.duration
+          ..thumbWidth = cached.width
+          ..thumbHeight = cached.height;
       }
     }
     return statuses;
@@ -45,7 +47,9 @@ class StatusRepository {
       _thumbCache[key] = result;
       media
         ..thumbPath = result.path
-        ..duration = result.duration ?? media.duration;
+        ..duration = result.duration ?? media.duration
+        ..thumbWidth = result.width
+        ..thumbHeight = result.height;
       return result;
     } catch (e) {
       debugPrint('Thumbnail failed for ${media.name}: $e');

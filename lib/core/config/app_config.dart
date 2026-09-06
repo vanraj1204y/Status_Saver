@@ -11,15 +11,12 @@
 class AppConfig {
   AppConfig._();
 
-  /// Path segment identifying this app to the shared update/legal-docs
-  /// worker, e.g. `$updateApiBaseUrl/$appSlug/version.json`.
-  static const String appSlug = String.fromEnvironment('APP_SLUG', defaultValue: 'StatusNest');
-
-  /// Shared backend for the force-update version check and the legal
-  /// documents fetched at build time (see tool/fetch_legal_documents.dart).
+  /// This app's complete base URL on the shared update/legal-docs worker
+  /// (already includes this app's path segment), e.g.
+  /// `$updateApiBaseUrl/version.json`. See tool/fetch_legal_documents.dart.
   static const String updateApiBaseUrl = String.fromEnvironment(
     'UPDATE_API_BASE_URL',
-    defaultValue: 'https://app-update-server.kolivanraj1204y.workers.dev',
+    defaultValue: 'https://app-update-server.kolivanraj1204y.workers.dev/StatusNest',
   );
 
   /// Master kill switch for the force-update gate.

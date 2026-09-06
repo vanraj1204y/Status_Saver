@@ -1,23 +1,153 @@
-<!doctype html>
+<!DOCTYPE html>
 <html lang="en">
 <head>
-<meta charset="utf-8">
+<meta charset="UTF-8">
 <meta name="viewport" content="width=device-width, initial-scale=1">
 <title>Privacy Policy — StatusNest</title>
 <style>
-  body { font-family: -apple-system, Roboto, sans-serif; line-height: 1.5; padding: 20px; color: #1a1a1a; }
-  h1 { font-size: 1.4rem; }
-  h2 { font-size: 1.1rem; margin-top: 1.5rem; }
+  :root {
+    color-scheme: light;
+  }
+  * { box-sizing: border-box; }
+  body {
+    margin: 0;
+    padding: 0;
+    background: #f5f6f8;
+    color: #1f2430;
+    font-family: -apple-system, BlinkMacSystemFont, "Segoe UI", Roboto, Helvetica, Arial, sans-serif;
+    line-height: 1.6;
+  }
+  .wrap {
+    max-width: 760px;
+    margin: 0 auto;
+    padding: 32px 20px 64px;
+  }
+  header.page-header {
+    padding: 28px 24px;
+    background: #ffffff;
+    border-radius: 12px;
+    box-shadow: 0 1px 3px rgba(0,0,0,0.06);
+    margin-bottom: 24px;
+  }
+  h1 {
+    margin: 0 0 6px;
+    font-size: 1.6rem;
+    color: #12213d;
+  }
+  .app-name {
+    color: #5a6172;
+    font-size: 0.95rem;
+    margin: 0;
+  }
+  .updated {
+    color: #8a90a0;
+    font-size: 0.85rem;
+    margin: 4px 0 0;
+  }
+  section.policy-section {
+    background: #ffffff;
+    border-radius: 12px;
+    padding: 22px 24px;
+    margin-bottom: 16px;
+    box-shadow: 0 1px 3px rgba(0,0,0,0.05);
+  }
+  section.policy-section h2 {
+    margin: 0 0 10px;
+    font-size: 1.1rem;
+    color: #1c2b52;
+  }
+  section.policy-section p {
+    margin: 0 0 10px;
+    color: #333a48;
+    font-size: 0.98rem;
+  }
+  section.policy-section p:last-child { margin-bottom: 0; }
+  section.policy-section ul {
+    margin: 0 0 10px;
+    padding-left: 22px;
+    color: #333a48;
+    font-size: 0.98rem;
+  }
+  section.policy-section li { margin-bottom: 4px; }
+  code {
+    font-family: ui-monospace, SFMono-Regular, Menlo, Consolas, monospace;
+    font-size: 0.9em;
+    background: #eef0f4;
+    border-radius: 4px;
+    padding: 1px 5px;
+    word-break: break-all;
+  }
+  a { color: #2554a8; }
+  footer {
+    text-align: center;
+    color: #9aa0ad;
+    font-size: 0.8rem;
+    margin-top: 24px;
+  }
+  @media (max-width: 480px) {
+    .wrap { padding: 20px 14px 48px; }
+    header.page-header, section.policy-section { padding: 18px 16px; border-radius: 10px; }
+    h1 { font-size: 1.35rem; }
+  }
 </style>
 </head>
 <body>
-<h1>Privacy Policy</h1>
-<p>Last updated: August 30, 2026</p>
-<h2>Data we collect</h2>
-<p>StatusNest runs entirely on your device. It only reads the WhatsApp status photos and videos that WhatsApp already stores on your phone, and saves copies you choose to keep into your own device gallery. Nothing is uploaded, tracked, or sent anywhere — the app has no server or account system of its own.</p>
-<h2>Permissions</h2>
-<p>StatusNest requests only the storage/media permissions needed to find WhatsApp's status folder and to save the photos and videos you download to your gallery.</p>
-<h2>Contact</h2>
-<p>For questions about this policy, contact us at <a href="mailto:work.vanraj@gmail.com">work.vanraj@gmail.com</a>.</p>
+<div class="wrap">
+  <header class="page-header">
+    <h1>Privacy Policy</h1>
+    <p class="app-name">StatusNest</p>
+    <p class="updated">Last updated: 2026-08-31</p>
+  </header>
+
+  <section class="policy-section">
+    <h2>Introduction</h2>
+    <p>This Privacy Policy explains how StatusNest ("the App") handles information when you use it to save WhatsApp status photos and videos. StatusNest is a focused, WhatsApp-status-only app — it does not include Instagram or any other platform support — and runs entirely on your device, with no backend server or account system of its own.</p>
+  </section>
+
+  <section class="policy-section">
+    <h2>Data We Collect</h2>
+    <p>StatusNest only reads the WhatsApp status photos and videos that WhatsApp (or WhatsApp Business) already stores on your phone, and saves copies you choose to keep into your own device gallery. Nothing is uploaded, tracked, or sent anywhere.</p>
+  </section>
+
+  <section class="policy-section">
+    <h2>Permissions We Use</h2>
+    <ul>
+      <li><strong>Storage / media access</strong> — used only to find WhatsApp's status folder and to save the photos and videos you choose to download into your device gallery.</li>
+    </ul>
+    <p>The App also checks whether WhatsApp or WhatsApp Business is installed, solely to power the optional "Send to WhatsApp" share button. No other app data is accessed. None of these permissions are used to transmit data off your device.</p>
+  </section>
+
+  <section class="policy-section">
+    <h2>How We Use Information</h2>
+    <p>Information accessed by the App is used solely to display and let you save WhatsApp status media that is already present on your device. The App does not use this information for advertising or profiling.</p>
+  </section>
+
+  <section class="policy-section">
+    <h2>Data Sharing</h2>
+    <p>The App does not sell, rent, or share your media or personal information with third parties, and does not integrate any analytics, advertising, or tracking SDKs. StatusNest is not affiliated with, endorsed by, or connected to WhatsApp LLC.</p>
+  </section>
+
+  <section class="policy-section">
+    <h2>Data Storage and Security</h2>
+    <p>Saved statuses are stored only in your device's own gallery/media store. No method of electronic storage is 100% secure, and we cannot guarantee absolute security.</p>
+  </section>
+
+  <section class="policy-section">
+    <h2>Children's Privacy</h2>
+    <p>The App is not directed at children under the age of 13, and we do not knowingly collect personal information from children.</p>
+  </section>
+
+  <section class="policy-section">
+    <h2>Changes to This Policy</h2>
+    <p>We may update this Privacy Policy from time to time. Changes will be reflected by an updated "last updated" date in this document. Continued use of the App after changes are published constitutes acceptance of the revised policy.</p>
+  </section>
+
+  <section class="policy-section">
+    <h2>Contact Us</h2>
+    <p>If you have questions about this Privacy Policy, please contact us at <a href="mailto:work.vanraj@gmail.com">work.vanraj@gmail.com</a>.</p>
+  </section>
+
+  <footer>StatusNest &middot; Privacy Policy</footer>
+</div>
 </body>
 </html>

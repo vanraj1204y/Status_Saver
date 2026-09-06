@@ -35,7 +35,7 @@ class _SkeletonGridState extends State<SkeletonGrid>
           maxCrossAxisExtent: 240,
           mainAxisSpacing: 12,
           crossAxisSpacing: 12,
-          childAspectRatio: 0.72,
+          childAspectRatio: 0.58,
         ),
         itemCount: 9,
         itemBuilder: (context, index) => DecoratedBox(
