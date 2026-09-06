@@ -1,6 +1,13 @@
 <?xml version="1.0" encoding="utf-8"?>
 <paths>
     <cache-path name="cache" path="." />
-    <external-path name="external" path="." />
     <external-files-path name="external_files" path="." />
+    <!-- Scoped to the exact WhatsApp status folders this app reads (see
+         statusDirCandidates() in MainActivity.kt) instead of the whole
+         external-storage root, so a granted content:// URI can never
+         expose more than that. -->
+    <external-path name="whatsapp_status" path="Android/media/com.whatsapp/WhatsApp/Media/.Statuses" />
+    <external-path name="whatsapp_business_status" path="Android/media/com.whatsapp.w4b/WhatsApp Business/Media/.Statuses" />
+    <external-path name="whatsapp_status_legacy" path="WhatsApp/Media/.Statuses" />
+    <external-path name="whatsapp_business_status_legacy" path="WhatsApp Business/Media/.Statuses" />
 </paths>

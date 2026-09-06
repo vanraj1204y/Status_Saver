@@ -45,30 +45,6 @@ class ShareService {
     }
   }
 
-  /// Opens WhatsApp's Status composer with the media pre-loaded, so the
-  /// user only has to tap WhatsApp's own Send button. Falls back to the
-  /// chat-forward share when WhatsApp isn't installed or doesn't support
-  /// the status intent on this device.
-  Future<ShareOutcome> sendToWhatsAppStatus(StatusMedia media, {String? resolvedPath}) async {
-    final result = await _channel.shareToWhatsAppStatus(
-      path: resolvedPath ?? media.path,
-      uri: media.uri,
-      mime: media.mimeType,
-    );
-    switch (result) {
-      case 'ok':
-        return ShareOutcome.ok;
-      case 'not_installed':
-      case 'no_app':
-        final fallback = await sendToWhatsApp(media, resolvedPath: resolvedPath);
-        return fallback == ShareOutcome.ok
-            ? ShareOutcome.whatsappMissingFellBack
-            : fallback;
-      default:
-        return ShareOutcome.failed;
-    }
-  }
-
   Future<ShareOutcome> open(StatusMedia media, {String? resolvedPath}) async {
     final result = await _channel.openMedia(
       path: resolvedPath ?? media.path,

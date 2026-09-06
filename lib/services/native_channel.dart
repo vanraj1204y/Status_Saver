@@ -154,19 +154,4 @@ class NativeChannel {
     return result ?? 'error';
   }
 
-  /// Opens WhatsApp's own Status composer pre-loaded with the media, so the
-  /// user only has to tap WhatsApp's own Send button. Returns "ok",
-  /// "not_installed", "no_app" or "error".
-  Future<String> shareToWhatsAppStatus({
-    String? path,
-    String? uri,
-    required String mime,
-  }) async {
-    final result = await _channel.invokeMethod<String>('shareToWhatsAppStatus', {
-      'path': path,
-      'uri': uri,
-      'mime': mime,
-    });
-    return result ?? 'error';
-  }
 }

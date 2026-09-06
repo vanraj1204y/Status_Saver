@@ -92,7 +92,7 @@ class HomeViewModel extends ChangeNotifier {
         await _autoSaveNew();
       }
     } catch (e) {
-      debugPrint('Status scan failed: $e');
+      if (kDebugMode) debugPrint('Status scan failed: $e');
       status = HomeStatus.error;
       notifyListeners();
     }
@@ -131,7 +131,7 @@ class HomeViewModel extends ChangeNotifier {
       if (!result.alreadyExisted) onMediaSaved?.call();
       return result.alreadyExisted ? SaveOutcome.alreadySaved : SaveOutcome.saved;
     } catch (e) {
-      debugPrint('Save failed for ${media.name}: $e');
+      if (kDebugMode) debugPrint('Save failed for ${media.name}: $e');
       return SaveOutcome.failed;
     } finally {
       _savingIds.remove(media.id);

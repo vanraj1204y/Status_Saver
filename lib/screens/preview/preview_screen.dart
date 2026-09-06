@@ -197,7 +197,7 @@ class _PreviewScreenState extends State<PreviewScreen>
     }
   }
 
-  Future<void> _share({bool whatsapp = false, bool whatsappStatus = false}) async {
+  Future<void> _share({bool whatsapp = false}) async {
     final shareService = context.read<ShareService>();
     final statusRepo = context.read<StatusRepository>();
     final media = _current;
@@ -207,11 +207,9 @@ class _PreviewScreenState extends State<PreviewScreen>
           media.path ?? (media.uri!.startsWith('content://') && !widget.fromDownloads
               ? await statusRepo.playableFile(media)
               : null);
-      final outcome = whatsappStatus
-          ? await shareService.sendToWhatsAppStatus(media, resolvedPath: resolved)
-          : whatsapp
-              ? await shareService.sendToWhatsApp(media, resolvedPath: resolved)
-              : await shareService.share(media, resolvedPath: resolved);
+      final outcome = whatsapp
+          ? await shareService.sendToWhatsApp(media, resolvedPath: resolved)
+          : await shareService.share(media, resolvedPath: resolved);
       if (!mounted) return;
       if (outcome == ShareOutcome.whatsappMissingFellBack) {
         AppToast.show(context, AppStrings.whatsappMissing,
@@ -395,10 +393,6 @@ class _PreviewScreenState extends State<PreviewScreen>
                 const FaIcon(FontAwesomeIcons.whatsapp,
                     color: Color(0xFF25D366)),
                 AppStrings.sendToWhatsApp),
-            _sheetItem(context, 'whatsapp_status',
-                const FaIcon(FontAwesomeIcons.whatsapp,
-                    color: Color(0xFF25D366)),
-                AppStrings.addToWhatsAppStatus),
             if (widget.fromDownloads)
               _sheetItem(context, 'delete',
                   const Icon(Icons.delete_outline_rounded,
@@ -416,8 +410,6 @@ class _PreviewScreenState extends State<PreviewScreen>
         _share();
       case 'whatsapp':
         _share(whatsapp: true);
-      case 'whatsapp_status':
-        _share(whatsappStatus: true);
       case 'delete':
         _delete();
     }

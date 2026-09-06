@@ -28,7 +28,7 @@ class DownloadsViewModel extends ChangeNotifier {
       items = await _repo.listSaved();
       status = items.isEmpty ? DownloadsStatus.empty : DownloadsStatus.ready;
     } catch (e) {
-      debugPrint('Loading downloads failed: $e');
+      if (kDebugMode) debugPrint('Loading downloads failed: $e');
       status = DownloadsStatus.error;
     }
     notifyListeners();

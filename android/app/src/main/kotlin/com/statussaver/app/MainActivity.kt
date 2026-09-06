@@ -1,6 +1,7 @@
 package com.statussaver.app
 
 import android.content.ActivityNotFoundException
+import android.content.ComponentName
 import android.content.ContentUris
 import android.content.ContentValues
 import android.content.Context
@@ -111,12 +112,6 @@ class MainActivity : FlutterActivity() {
                     val path = call.argument<String>("path")
                     val mime = call.argument<String>("mime") ?: "*/*"
                     result.success(openMedia(path, uri, mime))
-                }
-                "shareToWhatsAppStatus" -> {
-                    val path = call.argument<String>("path")
-                    val uri = call.argument<String>("uri")
-                    val mime = call.argument<String>("mime") ?: "*/*"
-                    result.success(shareToWhatsAppStatus(path, uri, mime))
                 }
                 else -> result.notImplemented()
             }
@@ -632,43 +627,25 @@ class MainActivity : FlutterActivity() {
         }
         return try {
             if (targetPackage != null) {
-                val installed = listOf(targetPackage, WHATSAPP_BUSINESS)
-                    .firstOrNull { isInstalled(it) }
-                    ?: return "not_installed"
-                send.setPackage(installed)
+                // Resolve to a concrete component instead of setPackage(): on
+                // devices with a cloned/dual-app WhatsApp (common on OEM
+                // skins like ColorOS/Realme UI, which run the clone under a
+                // second Android user), an explicit *package* target gets
+                // intercepted by the OEM's own multi-app resolver, which can
+                // silently fail to surface. queryIntentActivities only sees
+                // components in our own user profile, so filtering to the
+                // target package here is unambiguous and bypasses that.
+                val candidates = packageManager.queryIntentActivities(
+                    Intent(Intent.ACTION_SEND).apply { type = mime }, 0
+                )
+                val match = listOf(targetPackage, WHATSAPP_BUSINESS).firstNotNullOfOrNull { pkg ->
+                    candidates.firstOrNull { it.activityInfo.packageName == pkg }
+                } ?: return "not_installed"
+                send.component = ComponentName(match.activityInfo.packageName, match.activityInfo.name)
                 startActivity(send)
             } else {
                 startActivity(Intent.createChooser(send, title))
             }
-            "ok"
-        } catch (e: ActivityNotFoundException) {
-            "no_app"
-        } catch (e: Exception) {
-            "error"
-        }
-    }
-
-    /**
-     * Opens WhatsApp's own Status composer pre-loaded with the given media,
-     * via WhatsApp's dedicated status-share intent action — the user only
-     * has to tap WhatsApp's own Send button. Falls back to "not_installed"
-     * / "no_app" so the Dart side can fall back to a normal chat-forward
-     * share. Returns "ok", "not_installed", "no_app" or "error".
-     */
-    private fun shareToWhatsAppStatus(path: String?, uri: String?, mime: String): String {
-        val contentUri = shareableUri(path, uri) ?: return "error"
-        val statusType = if (mime.startsWith("video")) "video/*" else "image/*"
-        val installed = listOf(WHATSAPP, WHATSAPP_BUSINESS)
-            .firstOrNull { isInstalled(it) }
-            ?: return "not_installed"
-        val intent = Intent("com.whatsapp.intent.action.SHARE_TO_STATUS").apply {
-            type = statusType
-            putExtra(Intent.EXTRA_STREAM, contentUri)
-            addFlags(Intent.FLAG_GRANT_READ_URI_PERMISSION)
-            setPackage(installed)
-        }
-        return try {
-            startActivity(intent)
             "ok"
         } catch (e: ActivityNotFoundException) {
             "no_app"

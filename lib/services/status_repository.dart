@@ -52,7 +52,7 @@ class StatusRepository {
         ..thumbHeight = result.height;
       return result;
     } catch (e) {
-      debugPrint('Thumbnail failed for ${media.name}: $e');
+      if (kDebugMode) debugPrint('Thumbnail failed for ${media.name}: $e');
       return null;
     }
   }
