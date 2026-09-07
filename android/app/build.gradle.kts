@@ -52,7 +52,7 @@ android {
     defaultConfig {
         applicationId = envApplicationId
         minSdk = 24
-        targetSdk = 35
+        targetSdk = 36
         versionCode = envVersionCode
         versionName = envVersionName
         manifestPlaceholders["appLabel"] = envAppName
